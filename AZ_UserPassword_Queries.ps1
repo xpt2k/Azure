@@ -1,3 +1,13 @@
+$Creds = Get-Credential
+Connect-MsolService -Credential $Creds
+
+
+Connect-AzAccount -Credential $Creds
+Disconnect-AzAccount
+
+
+
+
 # Check if a specific user has their pwd set to never expire
 Get-AzADUser -objectid xx@postoffice.co.uk | select-object @{n = "PasswordNeverExpires"; e = { $_.passwordpolicies -contains "DisablePasswordExpiration" } }
 
